@@ -29,10 +29,10 @@ public class Support {
         //System.out.println();
         System.out.println("3. Выход");
     }
+
     private static void Randomizer() {
         String[] answers = {"Нет", "Да", "Может быть"};
         int randomNumber = (int) (Math.random() * 3);
-
             /*String result = switch (randomNumber) {
                 case 0 -> "Нет";
                 case 1 -> "Да";
