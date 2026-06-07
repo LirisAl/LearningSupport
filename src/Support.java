@@ -3,31 +3,29 @@ import java.util.Scanner;
 public class Support {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean running = true;
+        String choice;
         System.out.println("Привет, ты со всем справишься!");
-        while (running) {
+
+        do {
             printMenu();
-            String choice = scanner.nextLine().trim();
+            choice = scanner.nextLine().trim();
 
             switch (choice) {
                 case "1" -> Randomizer();
-                //case "2" ->
-                case "3" -> {
-                    System.out.println("Выход из программы. Ты молодец, хорошего дня!");
-                    running = false;
-                }
-                default -> System.out.println("Неверный выбор. Попробуй снова.");
+                case "2" -> System.out.println("Ещё не придумала что тут будет. Выбери другой пункт.\n");
+                case "3" -> System.out.println("Выход из программы. Ты молодец, хорошего дня!");
+                default -> System.out.println("Неверный выбор. Попробуй снова.\n");
             }
-        }
+        } while (!choice.equals("3"));
         scanner.close();
     }
 
     private static void printMenu() {
         System.out.println("Выбери действие:");
         System.out.println("1. Рандомайзер \"Да/Нет\";");
-        System.out.println("2. Еще не придумала что тут будет");
+        System.out.println("2. Еще не придумала что тут будет;");
         //System.out.println();
-        System.out.println("3. Выход");
+        System.out.println("3. Выход.");
     }
 
     private static void Randomizer() {
@@ -39,7 +37,7 @@ public class Support {
                 case 2 -> "Может быть";
             };
             System.out.println("Ответ: " + randomNumber);*/
-        System.out.println("Ответ: " + answers[randomNumber]);
+        System.out.println("Ответ: " + answers[randomNumber] + "\n");
 
     }
 }
