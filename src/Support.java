@@ -38,6 +38,5 @@ public class Support {
             };
             System.out.println("Ответ: " + randomNumber);*/
         System.out.println("Ответ: " + answers[randomNumber] + "\n");
-
     }
 }
