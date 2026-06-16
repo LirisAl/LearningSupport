@@ -1,9 +1,22 @@
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Support {
+
+    private static String getDayMessage() {
+        int hour = LocalDateTime.now().getHour();
+
+        return switch (hour) {
+            case 4, 5 -> "ложись спать!";
+            case 22, 23, 0, 1, 2, 3 -> "доброй ночи!";
+            case 18, 19, 20, 21 -> "приятного вечера!";
+            default -> "хорошего дня!";
+        };
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String choice;
@@ -18,7 +31,7 @@ public class Support {
                 case "2" -> showDayInfo();
                 //case "3" -> weather();
                 case "4" -> System.out.println("Ещё не придумала что тут будет. Выбери другой пункт.\n");
-                case "5" -> System.out.println("Выход из программы. Ты молодец, хорошего дня!");
+                case "5" -> System.out.println("Выход из программы. Ты молодец, " + getDayMessage());
                 default -> System.out.println("Неверный выбор. Попробуй снова.\n");
             }
         } while (!choice.equals("5"));
@@ -41,7 +54,7 @@ public class Support {
         System.out.println("Ответ: " + answers[randomNumber] + "\n");
     }
     private static void showDayInfo() {
-        ZonedDateTime now = java.time.ZonedDateTime.now();
+        ZonedDateTime now = ZonedDateTime.now();
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm:ss (z)");
         String formatedDayAndTime = now.format(dateFormatter);
