@@ -27,7 +27,7 @@ public class Support {
             switch (choice) {
                 case "1" -> randomizer();
                 case "2" -> showDayInfo();
-                //case "3" -> weather();
+                case "3" -> WeatherService.weather();
                 case "4" -> System.out.println("Ещё не придумала что тут будет. Выбери другой пункт.\n");
                 case "5" -> System.out.println("Выход из программы. Ты молодец, " + dayMessage());
                 default -> System.out.println("Неверный выбор. Попробуй снова.\n");
@@ -55,8 +55,8 @@ public class Support {
         ZonedDateTime now = ZonedDateTime.now();
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm:ss (z)");
-        String formatedDayAndTime = now.format(dateFormatter);
+        String formattedDayAndTime = now.format(dateFormatter);
 
-        System.out.println("Сегодня " + formatedDayAndTime);
+        System.out.println("Сегодня " + formattedDayAndTime + "\n");
     }
 }
