@@ -23,11 +23,12 @@ public class WeatherService {
             System.out.println("Найдено: " + city);
 
             JSONObject weather = getWeatherByCords(lat, lon);
-            printWeather(weather, city);
+            printWeather(weather);
         } catch (Exception e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
     }
+
     private static JSONObject getLocationByIP() throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://ip-api.com/json/"))
@@ -68,7 +69,7 @@ public class WeatherService {
         return new JSONObject(response.body());
     }
 
-    private static void printWeather(JSONObject weather, String city) {
+    private static void printWeather(JSONObject weather) {
         JSONObject main = weather.getJSONObject("main");
 
         double temp = main.getDouble("temp");
