@@ -80,9 +80,38 @@ public class WeatherService {
         String desc = weather.getJSONArray("weather")
                 .getJSONObject(0).getString("description");
 
+        String windPower;
+        if (wind < 0.3) {
+            windPower = " - штиль";
+        } else if (wind < 1.6) {
+            windPower = " - тихий ветер";
+        } else if (wind < 3.4) {
+            windPower = " - легкий ветер";
+        } else if (wind < 5.5) {
+            windPower = " - слабый ветер";
+        } else if (wind < 8.0) {
+            windPower = " - умеренный ветер";
+        } else if (wind < 10.8) {
+            windPower = " - свежий ветер";
+        } else if (wind < 13.9) {
+            windPower = " - сильный ветер";
+        } else if (wind < 17.2) {
+            windPower = " - крепкий ветер";
+        } else if (wind < 20.8) {
+            windPower = " - очень крепкий ветер";
+        } else if (wind < 24.5) {
+            windPower = " - шторм";
+        } else if (wind < 28.5) {
+            windPower = " - сильный шторм";
+        } else if (wind < 32.7) {
+            windPower = " - жестокий шторм";
+        } else {
+            windPower = " - ураган";
+        }
+
         System.out.println("\nТемпература: " + temp + "°C. Сегодня от " + tempMin + "°C до " + tempMax + "°C");
         System.out.println("Влажность: " + humidity + "%");
-        System.out.println("Ветер: " + wind + " м/с");
+        System.out.println("Ветер: " + wind + " м/с" + windPower);
         System.out.println("Описание: " + desc + "\n");
     }
 }
