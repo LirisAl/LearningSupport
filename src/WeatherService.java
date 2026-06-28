@@ -81,42 +81,33 @@ public class WeatherService {
                 .getJSONObject(0).getString("description");
 
         String windPower = windDescription(wind);
+        String moisture = airHumidity(humidity);
 
         System.out.println("\nТемпература: " + temp + "°C. Сегодня от " + tempMin + "°C до " + tempMax + "°C");
-        System.out.println("Влажность: " + humidity + "%");
+        System.out.println("Влажность: " + humidity + "%" + moisture);
         System.out.println("Ветер: " + wind + " м/с" + windPower);
         System.out.println("Описание: " + desc + "\n");
     }
 
     private static String windDescription(double wind) {
-        String windPower;
-        if (wind < 0.3) {
-            windPower = " - штиль";
-        } else if (wind < 1.6) {
-            windPower = " - тихий ветер";
-        } else if (wind < 3.4) {
-            windPower = " - легкий ветер";
-        } else if (wind < 5.5) {
-            windPower = " - слабый ветер";
-        } else if (wind < 8.0) {
-            windPower = " - умеренный ветер";
-        } else if (wind < 10.8) {
-            windPower = " - свежий ветер";
-        } else if (wind < 13.9) {
-            windPower = " - сильный ветер";
-        } else if (wind < 17.2) {
-            windPower = " - крепкий ветер";
-        } else if (wind < 20.8) {
-            windPower = " - очень крепкий ветер";
-        } else if (wind < 24.5) {
-            windPower = " - шторм";
-        } else if (wind < 28.5) {
-            windPower = " - сильный шторм";
-        } else if (wind < 32.7) {
-            windPower = " - жестокий шторм";
-        } else {
-            windPower = " - ураган";
+        double[] windSpeed = {0.2, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7};
+        String[] descriptions = {
+                " - штиль", " - тихий ветер", " - легкий ветер", " - слабый ветер", " - умеренный ветер",
+                " - свежий ветер", " - сильный ветер", " - крепкий ветер", " - очень крепкий ветер",
+                " - шторм", " - сильный шторм", " - жестокий шторм", " - ураган"
+        };
+
+        for (int i = 0; i < windSpeed.length; i++) {
+            if (wind < windSpeed[i]) {
+                return descriptions[i];
+            }
         }
-        return windPower;
+        return descriptions[descriptions.length - 1];
+    }
+    private static String airHumidity(int humidity) {
+        if (humidity < 30) return " - критически сухо";
+        if (humidity < 40) return " - норма в холодный (отопительный) период";
+        if (humidity <= 60) return " - идеально";
+        return " - повышенная влажность";
     }
 }
