@@ -25,7 +25,7 @@ public class WeatherService {
             JSONObject weather = getWeatherByCords(lat, lon);
             printWeather(weather);
         } catch (Exception e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            System.out.println("Ошибка: " + e.getMessage() + "\n");
         }
     }
 
