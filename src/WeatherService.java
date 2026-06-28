@@ -80,6 +80,15 @@ public class WeatherService {
         String desc = weather.getJSONArray("weather")
                 .getJSONObject(0).getString("description");
 
+        String windPower = windDescription(wind);
+
+        System.out.println("\nТемпература: " + temp + "°C. Сегодня от " + tempMin + "°C до " + tempMax + "°C");
+        System.out.println("Влажность: " + humidity + "%");
+        System.out.println("Ветер: " + wind + " м/с" + windPower);
+        System.out.println("Описание: " + desc + "\n");
+    }
+
+    private static String windDescription(double wind) {
         String windPower;
         if (wind < 0.3) {
             windPower = " - штиль";
@@ -108,10 +117,6 @@ public class WeatherService {
         } else {
             windPower = " - ураган";
         }
-
-        System.out.println("\nТемпература: " + temp + "°C. Сегодня от " + tempMin + "°C до " + tempMax + "°C");
-        System.out.println("Влажность: " + humidity + "%");
-        System.out.println("Ветер: " + wind + " м/с" + windPower);
-        System.out.println("Описание: " + desc + "\n");
+        return windPower;
     }
 }
